@@ -1,6 +1,5 @@
 #!/usr/bin/env nodejs
-import { greetings, getUserName } from './brain-games';
-import ask from '..';
+import { ask, greetings } from '..';
 
 const rules = () => {
   console.log('Answer "yes" if number odd otherwise answer "no"');
@@ -67,5 +66,5 @@ const game = (attempt, userName) => {
 
 greetings();
 rules();
-const userName = getUserName();
+const userName = ask('May I have your name? ');
 game(3, userName);
