@@ -1,6 +1,12 @@
 #!/usr/bin/env nodejs
-import askName from '..';
+import ask from '..';
 
-console.log('Welcome to the Brain Games!');
+export const greetings = () => {
+  console.log('Welcome to the Brain Games!');
+};
 
-askName();
+export const getUserName = () => {
+  const userName = ask('May I have your name? ');
+  console.log(`Hello, ${userName}!`);
+  return userName;
+};
