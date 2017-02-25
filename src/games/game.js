@@ -1,9 +1,10 @@
 import { ask, greetings } from '..';
 import evenRules from './even';
 import calcRules from './calc';
+import gcdRules from './gcd';
 
 const winMessage = (userName) => {
-  console.log(`Congratulation ${userName}! You win!}`);
+  console.log(`Congratulation ${userName}! You win!`);
 };
 
 const rightMessage = () => {
@@ -20,7 +21,7 @@ const round = (attempt, rules, userName) => {
     return 0;
   }
   const quest = rules.questionAnswer();
-  const userAnswer = ask(quest.question);
+  const userAnswer = ask(`${quest.question} Your answer: `);
   if (String(userAnswer) !== String(quest.answer)) {
     wrongMessage(userName, quest.answer);
     return 0;
@@ -47,6 +48,10 @@ export default (gameName) => {
     }
     case 'calc': {
       basic(calcRules());
+      break;
+    }
+    case 'gcd': {
+      basic(gcdRules());
       break;
     }
     default: {
