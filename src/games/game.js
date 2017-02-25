@@ -1,72 +1,45 @@
-#!/usr/bin/env nodejs
 import { ask, greetings } from '..';
+import evenRules from './even';
+import calcRules from './calc';
 
-const rules = () => {
-  console.log('Answer "yes" if number odd otherwise answer "no"');
-};
-
-const isOdd = (num) => {
-  if (num % 2 === 0) {
-    return true;
-  }
-  return false;
-};
-
-const oppositeAnswer = (answer) => {
-  if (answer === 'yes') {
-    return 'no';
-  }
-  return 'yes';
-};
-
-const falseMessage = (answer) => {
-  console.log(`"${answer}" is wrong answer ;(. Correct answer was "${oppositeAnswer(answer)}"`);
-};
-
-const round = () => {
-  const number = Math.floor(Math.random() * 100);
-  console.log(`Question: ${number}`);
-  const userAnswer = ask('Your answer: ');
-  switch (userAnswer) {
-    case 'yes': {
-      if (isOdd(number)) {
-        console.log('Correct!');
-        return true;
-      }
-      falseMessage(userAnswer);
-      return false;
-    }
-    case 'no': {
-      if (!isOdd(number)) {
-        console.log('Correct!');
-        return true;
-      }
-      falseMessage(userAnswer);
-      return false;
-    }
-    default: {
-      console.log('Sorry, you enter impossible  answer');
-      return false;
-    }
-  }
-};
-
-const game = (attempt, userName) => {
+const round = (attempt, rules, userName) => {
   if (attempt === 0) {
-    console.log(`Congratulations, ${userName}!`);
+    console.log(rules.winMessage(userName));
     return 0;
   }
-  if (!round()) {
-    console.log(`Let's try again, ${userName}!`);
+  const quest = rules.questionAnswer();
+  const userAnswer = ask(quest.question);
+  if (String(userAnswer) !== String(quest.answer)) {
+    console.log(rules.wrongMessage(userName, quest.answer));
     return 0;
   }
-  game(attempt - 1, userName);
+  console.log(rules.rightMessage(userName));
+  round(attempt - 1, rules, userName);
   return 0;
 };
-export default () => {
+
+const basic = (rules) => {
   greetings();
-  rules();
+  console.log(rules.rulesMessage());
   const userName = ask('May I have your name? ');
   console.log(`Hello, ${userName}!`);
-  game(3, userName);
+
+  round(rules.attempt, rules, userName);
+};
+
+export default (gameName) => {
+  switch (gameName) {
+    case 'even': {
+      basic(evenRules());
+      break;
+    }
+    case 'calc': {
+      basic(calcRules());
+      break;
+    }
+    default: {
+      const userName = ask('May I have your name? ');
+      console.log(`Hello, ${userName}!`);
+    }
+  }
 };
