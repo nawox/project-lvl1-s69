@@ -2,29 +2,41 @@ import { ask, greetings } from '..';
 import evenRules from './even';
 import calcRules from './calc';
 
+const winMessage = (userName) => {
+  console.log(`Congratulation ${userName}! You win!}`);
+};
+
+const rightMessage = () => {
+  console.log('Correct!');
+};
+
+const wrongMessage = (userName, answer) => {
+  console.log(`It's wrong answer. Correct answer was '${answer}'. Let's try again ${userName}.`);
+};
+
 const round = (attempt, rules, userName) => {
   if (attempt === 0) {
-    console.log(rules.winMessage(userName));
+    winMessage(userName);
     return 0;
   }
   const quest = rules.questionAnswer();
   const userAnswer = ask(quest.question);
   if (String(userAnswer) !== String(quest.answer)) {
-    console.log(rules.wrongMessage(userName, quest.answer));
+    wrongMessage(userName, quest.answer);
     return 0;
   }
-  console.log(rules.rightMessage(userName));
+  rightMessage();
   round(attempt - 1, rules, userName);
   return 0;
 };
 
 const basic = (rules) => {
   greetings();
-  console.log(rules.rulesMessage());
+  console.log(rules.rulesMessage);
   const userName = ask('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 
-  round(rules.attempt, rules, userName);
+  round(3, rules, userName);
 };
 
 export default (gameName) => {

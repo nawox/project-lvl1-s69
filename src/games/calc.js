@@ -1,22 +1,4 @@
-const win = (userName) => {
-  const message = `Congratulation ${userName}! You win!`;
-  return message;
-};
-
-const right = () => {
-  const message = 'Correct!';
-  return message;
-};
-
-const wrong = (userName, answer) => {
-  const message = `It's wrong answer. Right answer was ${answer} `;
-  return message;
-};
-
-const rules = () => {
-  const message = 'What is the result of expression?';
-  return message;
-};
+const rules = 'What is the result of expression?';
 
 const expr = () => {
   const rand = Math.floor(Math.random() * 10) % 3;
@@ -62,13 +44,9 @@ const question = () => {
 };
 
 export default () => {
-  const str = {
-    attempt: 3,
-    winMessage: win,
-    rightMessage: right,
-    wrongMessage: wrong,
+  const gameRules = {
     rulesMessage: rules,
     questionAnswer: question,
   };
-  return str;
+  return gameRules;
 };
