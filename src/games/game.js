@@ -2,6 +2,7 @@ import { ask, greetings } from '..';
 import evenRules from './even';
 import calcRules from './calc';
 import gcdRules from './gcd';
+import balanceRules from './balance';
 
 const winMessage = (userName) => {
   console.log(`Congratulation ${userName}! You win!`);
@@ -52,6 +53,10 @@ export default (gameName) => {
     }
     case 'gcd': {
       basic(gcdRules());
+      break;
+    }
+    case 'balance': {
+      basic(balanceRules());
       break;
     }
     default: {
