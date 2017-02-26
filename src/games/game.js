@@ -8,7 +8,7 @@ const winMessage = (userName) => {
 };
 
 const rightMessage = () => {
-  console.log('Correct!');
+  console.log(' Correct!');
 };
 
 const wrongMessage = (userName, answer) => {
@@ -21,7 +21,7 @@ const round = (attempt, rules, userName) => {
     return 0;
   }
   const quest = rules.questionAnswer();
-  const userAnswer = ask(`${quest.question} Your answer: `);
+  const userAnswer = ask(`\n Question: ${quest.question} \n Your answer: `);
   if (String(userAnswer) !== String(quest.answer)) {
     wrongMessage(userName, quest.answer);
     return 0;
@@ -33,7 +33,7 @@ const round = (attempt, rules, userName) => {
 
 const basic = (rules) => {
   greetings();
-  console.log(rules.rulesMessage);
+  console.log(rules.ruleMessage);
   const userName = ask('May I have your name? ');
   console.log(`Hello, ${userName}!`);
 

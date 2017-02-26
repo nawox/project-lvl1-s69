@@ -1,4 +1,4 @@
-const rules = 'Find the greatest common divisor of given numbers.';
+const rule = 'Find the greatest common divisor of given numbers.';
 
 const gcd = (x, y) => {
   if (x <= 0 || y <= 0) {
@@ -14,8 +14,8 @@ const question = () => {
   const n1 = Math.floor(Math.random() * 100) + 1;
   const n2 = Math.floor(Math.random() * 100) + 1;
 
-  const quest = `Question: ${n1} ${n2} `;
-  const ans = gcd(n1, n2);
+  const quest = `${n1} ${n2}`;
+  const ans = String(gcd(n1, n2));
 
   const str = {
     question: quest,
@@ -26,7 +26,7 @@ const question = () => {
 };
 export default () => {
   const gameRules = {
-    rulesMessage: rules,
+    ruleMessage: rule,
     questionAnswer: question,
   };
   return gameRules;

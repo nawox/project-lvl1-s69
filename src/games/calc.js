@@ -1,4 +1,4 @@
-const rules = 'What is the result of expression?';
+const rule = 'What is the result of expression?';
 
 const expr = () => {
   const rand = Math.floor(Math.random() * 10) % 3;
@@ -34,8 +34,9 @@ const question = () => {
   const n1 = Math.floor(Math.random() * 100) % 20;
   const n2 = Math.floor(Math.random() * 100) % 20;
   const expression = expr();
-  const quest = `${n1} ${expression.string} ${n2} `;
+  const quest = `${n1} ${expression.string} ${n2}`;
   const ans = expression.func(n1, n2);
+
   const str = {
     question: quest,
     answer: ans,
@@ -45,7 +46,7 @@ const question = () => {
 
 export default () => {
   const gameRules = {
-    rulesMessage: rules,
+    ruleMessage: rule,
     questionAnswer: question,
   };
   return gameRules;

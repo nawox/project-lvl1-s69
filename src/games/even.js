@@ -1,16 +1,17 @@
-#!/usr/bin/env nodejs
+const rule = 'Answer "yes" if number even otherwise answer "no"';
 
-const rules = 'Answer "yes" if number even otherwise answer "no"';
+const isEven = (x) => {
+  if (x % 2 === 0) {
+    return 'yes';
+  }
+  return 'no';
+};
 
 const question = () => {
   const number = Math.floor(Math.random() * 100);
-  const quest = `Question: ${number} `;
-  let ans = '';
-  if (number % 2 === 0) {
-    ans = 'yes';
-  } else {
-    ans = 'no';
-  }
+  const quest = String(number);
+  const ans = isEven(number);
+
   const str = {
     question: quest,
     answer: ans,
@@ -20,7 +21,7 @@ const question = () => {
 
 export default () => {
   const gameRules = {
-    rulesMessage: rules,
+    ruleMessage: rule,
     questionAnswer: question,
   };
 
